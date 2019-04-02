@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class listAddUp {
+	
+	static boolean SumOfTwo(int[] arr, int k) {
+		Set<Integer> set = new HashSet<Integer>();
+		boolean sum = false;                                                  //  initially there are no distinct integers (false)
+		
+		for(int i=0; i<arr.length; i++) {
+			if(!set.contains(arr[i])) {
+				set.add(arr[i]);
+			}
+			if(set.contains(k-arr[i]) && arr[i] != k-arr[i]){                   // ensure both numbers are not duplicates and if the set 
+				sum = true;                                                       // has the value that equals to k-arr[i]
+			}                                                                   // sum is then set to true if there are two distinct integers
+		}
+		
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = new int[] {10, 15, 3, 7, 2, 2};
+		int k = 4;
+		boolean twoSums;
+		
+		twoSums = SumOfTwo(arr, k);
+		System.out.print(twoSums);
+	}
+
+}
