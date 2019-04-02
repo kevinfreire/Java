@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class ArrayOfProducts {
+	
+	public static int[] getProductArray(int[] arr) {
+		
+		int[] productArray = new int[arr.length];
+		
+		for(int i=0; i<arr.length; i++) {
+			
+			int product = 1;
+			
+			for(int j=0; j<arr.length; j++) {
+				
+				if( i != j ) {
+					product *= arr[j];                                // Gets the product of all values in original array excluding value at index
+				}                                                   // i for original array
+				
+			}
+			
+			productArray[i] = product;                            // placing the value received from above and inserting it to index 1 
+		}
+		
+		return productArray;
+	
+	}
+	
+	static void productArray(int[] arr) {
+		int n = arr.length;
+		int[] left = new int[n];
+		int[] right = new int[n];
+		int[] prod = new int[n];
+		
+		left[0] = 1;                                      // the first element of left array has a vlaue of 1
+		right[n-1] = 1;                                   // the last element of right array has a value of 1
+		
+		for(int i=1; i<n; i++) {
+			left[i] = arr[i-1]*left[i-1];                   // everything from the left of index i has the product of all 
+		}                                                 // the values to the left and place at index i
+		
+		for(int i=n-2; i>=0; i--) {
+			right[i] = arr[i+1]*right[i+1];                 // everything from the right of index i has the product of all 
+		}                                                 // the values to the right and place at index i
+		
+		for(int i=0; i<n; i++) {
+			prod[i] = right[i]*left[i];                     // Now get the product array by multiplying both left and right array at index i
+		}                                                 // and inserting it to index 1 for product array
+		
+		for(int i=0; i<n; i++) {
+			System.out.print(prod[i]+" ");                  // Print each value from the product array
+		}
+		
+		return;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = new int[] {1, 2, 3, 4, 5};                                // Test case; can be changed to test different cases
+		
+		System.out.println(Arrays.toString(getProductArray(arr)));            // using the first algorithm 
+		productArray(arr);                                                    // using the second algorithm
+	}
+
+}
